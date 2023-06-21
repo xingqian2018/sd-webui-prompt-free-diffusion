@@ -1,6 +1,12 @@
 # Prompt-Free Diffusion for Stable Diffusion WebUI
 
-This is the WebUI extension to inject Prompt-Free Diffusion input Stable Diffusion WebUI
+This is the WebUI extension to inject [Prompt-Free Diffusion](https://github.com/SHI-Labs/Prompt-Free-Diffusion) into Stable Diffusion WebUI.
+
+## New
+
+- [2023.06.20]: Repo created
+
+## Instruction
 
 <p align="center">
   <img src="assets/figures/webui_instruction.png" width="90%">
@@ -8,8 +14,9 @@ This is the WebUI extension to inject Prompt-Free Diffusion input Stable Diffusi
 
 This extension is for AUTOMATIC1111's [Stable Diffusion web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui), allows the Web UI to add [Prompt-Free Diffusion](https://github.com/SHI-Labs/Prompt-Free-Diffusion) to the original Stable Diffusion model to generate images. No training required.
 
+This repo also borrows UI designs and code structures from [SDWebUI ContorlNet](https://github.com/Mikubill/sd-webui-controlnet).
 
-# Installation
+## Installation
 
 1. Open "Extensions" tab.
 2. Open "Install from URL" tab in the tab.
@@ -21,7 +28,7 @@ This extension is for AUTOMATIC1111's [Stable Diffusion web UI](https://github.c
 8. Download models.
 9. After you put models in the correct folder, you may need to refresh to see the models. The refresh button is right to your "SeeCoder" dropdown.
 
-# Download Models
+## Download Models
 
 Download the models from Prompt-Free Diffusion mode repo: `https://huggingface.co/shi-labs/prompt-free-diffusion/tree/main/pretrained/pfd/seecoder`. Put it under `extentions/sd-webui-prompt-free-diffusion/models/`. You only need to download SeeCoder. 
 
