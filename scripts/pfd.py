@@ -388,6 +388,25 @@ class Script(scripts.Script):
                     self.negative_prompts, 
                     self.steps*self.step_multiplier, 
                     self.cached_uc)
+                
+            elif self.hack_seecoder_np_type == \
+                    pfd_external_code.NegativePromptType.ANIMENP.value:
+                self.uc = self.get_conds_with_caching(
+                    prompt_parser.get_learned_conditioning, 
+                    [""], 
+                    self.steps*self.step_multiplier, 
+                    self.cached_uc)
+                new_uc = []
+                anime_uc = torch.load(pfd_global_state.anime_np_path)
+                for ii in self.uc:
+                    new_uc_i = []
+                    for iii in ii:
+                        ucdevice, ucdtype = iii.cond.device, iii.cond.dtype
+                        anime_uc = anime_uc.to(
+                            device=ucdevice, dtype=ucdtype)
+                        new_uc_i.append(iii._replace(cond = anime_uc))
+                    new_uc.append(new_uc_i)
+                self.uc = new_uc
 
             if self.hack_seecoder_pf_mode == \
                     pfd_external_code.PromptFreeMode.PFREE.value:
@@ -422,7 +441,6 @@ class Script(scripts.Script):
                             extra = self.hack_seecoder_embedding.to(
                                 device=cdevice, dtype=cdtype)
                             extra *= self.hack_seecoder_embedding_weight
-                            extra *= self.hack_seecoder_cfg_scale / self.cfg_scale
                             new_scedules.append(
                                 iiii._replace(cond = torch.cat([iiii.cond, extra], dim=0)))
                         iii.schedules = new_scedules

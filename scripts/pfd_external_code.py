@@ -18,6 +18,7 @@ class PromptFreeMode(Enum):
 class NegativePromptType(Enum):
     STRICTZERO = "Strict zero"
     USINGINPUT = "Using input"
+    ANIMENP = "Default anime NP"
 
 class SeeCoderUnit:
     def __init__(

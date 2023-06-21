@@ -13,6 +13,7 @@ models_paths = OrderedDict() # "My_Lora(abcd1234)" -> C:/path/to/model.safetenso
 models_names = {}  # "my_lora" -> "My_Lora(abcd1234)"
 default_conf = os.path.join("models", "seecoder-v1-0.yaml")
 script_dir = scripts.basedir()
+anime_np_path = os.path.join(script_dir, 'assets', 'anime_ug.pth')
 
 os.makedirs(models_dir, exist_ok=True)
 
