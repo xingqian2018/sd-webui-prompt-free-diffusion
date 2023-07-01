@@ -2,7 +2,7 @@
 
 This is the WebUI extension to inject [Prompt-Free Diffusion](https://github.com/SHI-Labs/Prompt-Free-Diffusion) into Stable Diffusion WebUI.
 
-## New
+## News
 
 - [2023.06.20]: Repo created
 
