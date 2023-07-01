@@ -1,4 +1,4 @@
-version_flag = 'v1.0.0'
+version_flag = 'v1.0.1'
 
 from scripts.pfd_logging import pfd_logger
 

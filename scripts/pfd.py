@@ -368,11 +368,14 @@ class Script(scripts.Script):
 
             if self.hack_seecoder_np_type == \
                     pfd_external_code.NegativePromptType.STRICTZERO.value:
-                self.uc = self.get_conds_with_caching(
-                    prompt_parser.get_learned_conditioning, 
-                    [""],
-                    self.steps*self.step_multiplier, 
-                    self.cached_uc)
+                self.uc = prompt_parser.get_learned_conditioning(
+                    shared.sd_model, [""], self.steps*self.step_multiplier)
+                # self.get_conds_with_caching(
+                #     prompt_parser.get_learned_conditioning, 
+                #     [""],
+                #     self.steps*self.step_multiplier, 
+                #     self.cached_uc,
+                #     None,)
                 new_uc = []
                 for ii in self.uc:
                     new_uc_i = []
@@ -383,19 +386,23 @@ class Script(scripts.Script):
 
             elif self.hack_seecoder_np_type == \
                     pfd_external_code.NegativePromptType.USINGINPUT.value:
-                self.uc = self.get_conds_with_caching(
-                    prompt_parser.get_learned_conditioning, 
-                    self.negative_prompts, 
-                    self.steps*self.step_multiplier, 
-                    self.cached_uc)
+                self.uc = prompt_parser.get_learned_conditioning(
+                    shared.sd_model, self.negative_prompts, self.steps*self.step_multiplier)
+                # self.uc = self.get_conds_with_caching(
+                #     prompt_parser.get_learned_conditioning, 
+                #     self.negative_prompts, 
+                #     self.steps*self.step_multiplier, 
+                #     self.cached_uc)
                 
             elif self.hack_seecoder_np_type == \
                     pfd_external_code.NegativePromptType.ANIMENP.value:
-                self.uc = self.get_conds_with_caching(
-                    prompt_parser.get_learned_conditioning, 
-                    [""], 
-                    self.steps*self.step_multiplier, 
-                    self.cached_uc)
+                self.uc = prompt_parser.get_learned_conditioning(
+                    shared.sd_model, [""], self.steps*self.step_multiplier)
+                # self.uc = self.get_conds_with_caching(
+                #     prompt_parser.get_learned_conditioning, 
+                #     [""], 
+                #     self.steps*self.step_multiplier, 
+                #     self.cached_uc)
                 new_uc = []
                 anime_uc = torch.load(pfd_global_state.anime_np_path)
                 for ii in self.uc:
@@ -410,11 +417,13 @@ class Script(scripts.Script):
 
             if self.hack_seecoder_pf_mode == \
                     pfd_external_code.PromptFreeMode.PFREE.value:
-                self.c = self.get_conds_with_caching(
-                    prompt_parser.get_multicond_learned_conditioning, 
-                    [""],
-                    self.steps*self.step_multiplier, 
-                    self.cached_c)
+                self.c = prompt_parser.get_multicond_learned_conditioning(
+                    shared.sd_model, [""], self.steps*self.step_multiplier)
+                # self.c = self.get_conds_with_caching(
+                #     prompt_parser.get_multicond_learned_conditioning, 
+                #     [""],
+                #     self.steps*self.step_multiplier, 
+                #     self.cached_c)
                 self.cfg_scale = self.hack_seecoder_cfg_scale
                 for ii in self.c.batch:
                     for iii in ii:
@@ -428,11 +437,13 @@ class Script(scripts.Script):
                         iii.schedules = new_scedules
             elif self.hack_seecoder_pf_mode == \
                     pfd_external_code.PromptFreeMode.PUSE.value:
-                self.c = self.get_conds_with_caching(
-                    prompt_parser.get_multicond_learned_conditioning, 
-                    self.prompts, 
-                    self.steps*self.step_multiplier, 
-                    self.cached_c)
+                self.c = prompt_parser.get_multicond_learned_conditioning(
+                    shared.sd_model, self.prompts, self.steps*self.step_multiplier)
+                # self.c = self.get_conds_with_caching(
+                #     prompt_parser.get_multicond_learned_conditioning, 
+                #     self.prompts, 
+                #     self.steps*self.step_multiplier, 
+                #     self.cached_c)
                 for ii in self.c.batch:
                     for iii in ii:
                         new_scedules = []
